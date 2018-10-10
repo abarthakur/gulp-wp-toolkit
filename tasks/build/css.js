@@ -130,6 +130,10 @@ module.exports = function() {
       return true === outputConfig.sourceMap;
     };
 
+    let shouldNotify = function() {
+      return false !== outputConfig.notify;
+    }
+
     return gulp.src(outputConfig.src)
       .pipe(bulksass())
       .pipe(plumber())
@@ -143,6 +147,6 @@ module.exports = function() {
       .pipe(gulpif(isExpanded, csscomb(getCombFile())))
       .pipe(gulpif(createSourceMap, sourcemap.write('./')))
       .pipe(gulp.dest(outputConfig.dest))
-      .pipe(notify({ message: config.messages.css }));
+      .pipe(gulpif(shouldNotify, notify({ message: config.messages.css })));
   });
 };
