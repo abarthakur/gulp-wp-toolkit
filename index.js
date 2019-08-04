@@ -6,4 +6,5 @@ module.exports = {
   bs: require('browser-sync'),
   extendTasks: require('./utils/extend-tasks'),
   extendConfig: require('./utils/extend-config'),
+  omitConfig: require('./utils/omit-config')
 };
